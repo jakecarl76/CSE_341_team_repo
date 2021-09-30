@@ -3,6 +3,12 @@
 
 <head>
   <% include ../includes/header.ejs %>
+  <style>
+    input
+    {
+      color: black;
+    }
+  </style>
 </head>
 
 <body>
@@ -12,7 +18,45 @@
         <h1>
           <%= title %>
         </h1>
-        <p>This is the placeholder for Team Activity 03</p>
+        <div>
+          <form actioin="/ta03" method="POST">
+            <label for="search_bar">Search:</label>
+            <input type="text" name="search_bar" id="search_bar">
+            <input type="submit" value="search">
+          </form>
+        </div>
+        <% if(prods.length > 0) {%>
+        <div>
+          <% for(product of prods){ %>
+            <article>
+              <header>
+                <h1><%= product.name %></h1>
+              </header>
+              
+              <div>
+                <img src="<%= product.imageUrl %>" alt="<%= product.imageUrl %>">
+              </div>
+              <div>
+                <h2>
+                  $<%= product.price %>
+                </h2>
+              </div>
+              <div>
+                <p>
+                  <%= product.description %>
+                </p>
+              </div>
+              <div>
+                <p>tags: <% for(tag of product.tags) { %><%= tag %>, <%} %></p>
+              </div>
+              
+
+            </article>
+          <% } %>
+        </div>
+        <% }else{ %>
+          <h1> No Products Found</h1>
+        <% } %>
       </div>
     </div>
     <div class="container">
