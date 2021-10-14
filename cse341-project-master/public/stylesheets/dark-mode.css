@@ -1,3 +1,9 @@
+body
+{
+  background-color: darkslategray;
+  color: gray;
+}
+
 .jumbotron {
   background: #0065bd;
   color: white;
@@ -40,9 +46,4 @@
 .logo {
   width: 5rem;
   height: 5rem;
-}
-
-input 
-{
-  display: block;
 }

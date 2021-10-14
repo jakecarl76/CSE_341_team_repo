@@ -3,6 +3,19 @@
 
 <head>
   <% include ../includes/header.ejs %>
+
+  <% if(cur_style == 'dark_mode') { %>
+    <link rel="stylesheet" href="/stylesheets/dark-mode.css">
+  <% } else if (cur_style != 'light_mode' ){ %>
+    <style>
+       body
+       {
+         background-color: <%= cur_style %>;
+       }
+    </style>
+  <% } %>
+
+  
 </head>
 
 <body>
@@ -12,11 +25,34 @@
         <h1>
           <%= title %>
         </h1>
-        <p>This is the placeholder for Team Activity 04</p>
+       
       </div>
     </div>
     <div class="container">
+      <h2>Counter: <%= cur_count %></h2>
+      <form action="/ta04/counter" method="POST">
+        <label for="up">Increase:</label>
+        <input type="radio" id="up" name="count" value="up" checked>
+        <label for="down">Decrease:</label>
+        <input type="radio" id="down" name="count" value="down" >
+        <input type="submit" value="Set">
+      </form>
 
+      <h2>Style</h2>
+        <form action="/ta04/change-style" method="POST">
+          <label for="light_mode">Light Mode:</label>
+          <input type="radio" id="light_mode" name="style" value="light" checked>
+          <label for="dark_mode">Dark Mode:</label>
+          <input type="radio" id="dark_mode" name="style" value="dark" >
+          <label for="other">Other:</label>
+          <input type="radio" id="other" name="style" value="other" >
+  
+          <label for="color">Background Color:</label>
+          <input type="text" id="color" name="bg_color" value="white" >
+          <input type="submit" value="Set">
+        </form>
+
+        <a href="/ta04/reset"> Reset </a>
     </div>
 
 

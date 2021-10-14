@@ -13,10 +13,20 @@
 // Our initial setup (package requires, port number setup)
 const express = require('express');
 const bodyParser = require('body-parser');
+const sess_mod = require('express-session');
 const path = require('path');
 const PORT = process.env.PORT || 5000; // So we can run on heroku || (OR) localhost:5000
 
 const app = express();
+//use sessions: req.session.property = value; //etc
+
+//use sessions
+app.use(sess_mod({
+  secret: 'a long str',
+  resave: false,
+  saveUninitialized: false
+}));
+
 
 // Route setup. You can implement more in the future!
 const ta01Routes = require('./routes/ta01');
